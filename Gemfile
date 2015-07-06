@@ -14,6 +14,8 @@ gem 'puma'
 gem 'active_model_serializers'
 gem 'foundation-rails'
 gem 'font-awesome-rails'
+gem 'capybara'
+gem 'poltergeist'
 
 gem 'rails_12factor' , group: :production
 
@@ -47,9 +49,7 @@ group :development do
 end
 
 group :test do
-  gem 'shoulda-matchers' 
-  gem 'capybara'  
+  gem 'shoulda-matchers'    
   gem 'database_cleaner'   
-  gem 'launchy'  
-  gem 'poltergeist'    
+  gem 'launchy'      
 end
