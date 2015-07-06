@@ -1,0 +1,35 @@
+doctype html
+html lang='en'
+  head
+    meta charset='utf-8'
+    meta name='viewport' content='width=device-width, initial-scale=1.0'
+
+    title == content_for?(:title) ? yield(:title) : 'PMI Info'
+
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'vendor/modernizr'
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tag
+
+  body
+    nav.top-bar
+      ul.title-area
+        li.name
+          h1= link_to 'PMI Info', root_path
+    #alerts
+      - if flash.notice
+        .alert-box.success{data-alert}
+          = flash.notice
+          a.close{href='#'} &times;
+      - if flash[:warning]
+        .alert-box.warning{data-alert}
+          = flash[:warning]
+          a.close{href='#'} &times;
+      - if flash.alert
+        .alert-box.alert{data-alert}
+          = flash.alert
+          a.close{href='#'} &times;
+
+    #main
+      == yield
+

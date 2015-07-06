@@ -1,0 +1,14 @@
+.row
+  .small-12.medium-8.medium-centered.columns
+    = form_tag search_path, id: 'search-form' do
+      = field_set_tag 'Search for holder by' do
+        .row
+          .small-12.columns
+            = label_tag :s, 'Lastname:'
+            = text_field_tag :s, '', placeholder: 'lastname starting with', autofocus: true
+        .row
+          .small-10.columns
+            = submit_tag 'Search', class: 'button'
+          .small-2.columns.icon-styles
+            i.fa.fa-cog.options.tip-right{data-tooltip aria-haspopup='true' title='Use cog to get fresh info from remote server'}
+      = hidden_field_tag :force, false

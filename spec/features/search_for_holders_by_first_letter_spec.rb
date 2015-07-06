@@ -7,16 +7,28 @@ feature 'Search for current holders by first letter of their last name', '
 
 ' do
   context 'User tries to' do
+    let!(:good_holder) { create(:holder, name: 'Ivan Ivanov') }
+    let!(:another_good_holder) { create(:holder, name: 'Ilya Ilyin') }
+    let!(:bad_holder) { create(:holder, name: 'Nikolay Mironov') }
+    
     before :each do
       visit root_path
     end
 
     scenario 'search via selecting letter from select control' do
-      select 'A', from: 'lastname_starting_with'
+      fill_in 's', with: 'I'
       click_on 'Search'
 
-      expect(page).to_not have_content('Mike Ross')
-      expect(page).to have_content('Here are current holderls, whos lastname is starting with A')
+      expect(page).to have_content(good_holder.name)
+      expect(page).to have_content(another_good_holder.name)
+      expect(page).to_not have_content(bad_holder.name)
+    end
+
+    scenario 'search without passing any value as lastname' do
+      fill_in 's', with: ''
+      click_on 'Search'
+
+      expect(page).to have_content 'Please enter lastname or couple letters lastname starts with.'
     end
   end
 end

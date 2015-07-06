@@ -1,0 +1,20 @@
+.row
+  .small-12.columns
+    .results.row
+      table#holders
+        thead
+          th[width="200"] Name
+          th[width="200"] City
+          th[width="200"] Country
+          th Credential
+          th[width="100"] Earned
+          th[width="100"] Status
+        tbody
+          - @holders.each do |holder|
+            tr
+              td= holder.name
+              td= holder.city
+              td= holder.country
+              td= holder.credential
+              td= holder.date_of_certification
+              td= holder.status
